@@ -80,6 +80,16 @@
     ]
   }
   </script>
+
+  <!-- Schema.org WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Regalos Navidades",
+    "url": "https://www.regalosnavidades.com/"
+  }
+  </script>
 </head>
 <body>
 
@@ -96,7 +106,7 @@
 <!-- NAVEGACIÓN -->
 <nav class="site-nav" aria-label="Navegación principal">
   <a href="/" class="nav-logo" aria-label="Regalos Navidades — inicio">
-    <img src="https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=64&q=80&fit=crop" alt="">
+    <img src="images/anicon.png" alt="" width="40" height="40">
     Regalos Navidades
   </a>
   <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" id="nav-toggle">
@@ -327,24 +337,24 @@
     <h2 id="faq-title">Preguntas <span class="gold">frecuentes</span></h2>
     <p class="subtitle">Lo que más nos preguntan antes de comprar</p>
   </div>
-  <div class="faq-list container">
+  <dl class="faq-list container">
     <div class="faq-item">
-      <p class="faq-q">¿Cuándo llega un pedido de Amazon antes de Navidad?</p>
-      <p class="faq-a">Con Prime, la mayoría de artículos llegan en 1–2 días. Si quieres tener el regalo listo el 25 de diciembre, lo más seguro es pedirlo antes del 22. En diciembre la logística va muy cargada y los plazos se alargan.</p>
+      <dt class="faq-q">¿Cuándo llega un pedido de Amazon antes de Navidad?</dt>
+      <dd class="faq-a">Con Prime, la mayoría de artículos llegan en 1–2 días. Si quieres tener el regalo listo el 25 de diciembre, lo más seguro es pedirlo antes del 22. En diciembre la logística va muy cargada y los plazos se alargan.</dd>
     </div>
     <div class="faq-item">
-      <p class="faq-q">¿Es fiable comprar en AliExpress?</p>
-      <p class="faq-a">Sí. AliExpress protege todas las compras: si el paquete no llega o no es lo que esperabas, te devuelven el dinero sin drama. El único inconveniente real es el tiempo de envío — entre 15 y 30 días — así que hay que pedirlo con antelación.</p>
+      <dt class="faq-q">¿Es fiable comprar en AliExpress?</dt>
+      <dd class="faq-a">Sí. AliExpress protege todas las compras: si el paquete no llega o no es lo que esperabas, te devuelven el dinero sin drama. El único inconveniente real es el tiempo de envío — entre 15 y 30 días — así que hay que pedirlo con antelación.</dd>
     </div>
     <div class="faq-item">
-      <p class="faq-q">¿Tiene gastos de envío Amazon?</p>
-      <p class="faq-a">Muchos artículos tienen envío gratis sin necesidad de Prime. Con Prime, el envío rápido (1–2 días) es gratuito en casi todo. Durante la campaña navideña suelen activar envío gratuito también en pedidos sin Prime a partir de cierto importe.</p>
+      <dt class="faq-q">¿Tiene gastos de envío Amazon?</dt>
+      <dd class="faq-a">Muchos artículos tienen envío gratis sin necesidad de Prime. Con Prime, el envío rápido (1–2 días) es gratuito en casi todo. Durante la campaña navideña suelen activar envío gratuito también en pedidos sin Prime a partir de cierto importe.</dd>
     </div>
     <div class="faq-item">
-      <p class="faq-q">¿Puedo devolver un regalo si no le gusta?</p>
-      <p class="faq-a">En Amazon, los artículos comprados durante la campaña navideña se pueden devolver hasta el 31 de enero del año siguiente. Solo tienes que ir a tus pedidos, seleccionar el artículo y seguir los pasos — en la mayoría de casos hay un punto de entrega cerca de casa.</p>
+      <dt class="faq-q">¿Puedo devolver un regalo si no le gusta?</dt>
+      <dd class="faq-a">En Amazon, los artículos comprados durante la campaña navideña se pueden devolver hasta el 31 de enero del año siguiente. Solo tienes que ir a tus pedidos, seleccionar el artículo y seguir los pasos — en la mayoría de casos hay un punto de entrega cerca de casa.</dd>
     </div>
-  </div>
+  </dl>
 </section>
 
 <!-- NEWSLETTER -->
@@ -401,12 +411,14 @@
 
   /* --- NIEVE --- */
   const snow = document.querySelector('.snow');
-  for (let i = 0; i < 18; i++) {
-    const f = document.createElement('div');
-    f.className = 'flake';
-    const size = Math.random() * 4 + 2;
-    f.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*8}s;`;
-    snow.appendChild(f);
+  if (snow) {
+    for (let i = 0; i < 18; i++) {
+      const f = document.createElement('div');
+      f.className = 'flake';
+      const size = Math.random() * 4 + 2;
+      f.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*8}s;`;
+      snow.appendChild(f);
+    }
   }
 
   /* --- HAMBURGER NAV --- */
@@ -416,14 +428,24 @@
     const open = navLinks.classList.toggle('open');
     toggle.setAttribute('aria-expanded', String(open));
   });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.focus();
+    }
+  });
 
   /* --- DISCLOSURE BANNER --- */
   const banner = document.getElementById('affiliate-banner');
-  if (!localStorage.getItem('affiliate-ok')) {
+  if (localStorage.getItem('affiliate-ok')) {
+    banner.classList.add('is-hidden');
+  } else {
     banner.classList.add('is-visible');
   }
   document.getElementById('affiliate-close').addEventListener('click', () => {
     banner.classList.remove('is-visible');
+    banner.classList.add('is-hidden');
     localStorage.setItem('affiliate-ok', '1');
   });
 </script>
