@@ -11,6 +11,7 @@
   --bg:           #1a0505;
   --bg-card:      rgba(255, 255, 255, 0.05);
   --bg-card-hover:rgba(255, 255, 255, 0.08);
+  --bg-nav:       rgba(10, 0, 0, 0.9);
   --red-deep:     #6b0000;
   --red-mid:      #8b0000;
   --gold:         #ffd700;
@@ -43,6 +44,13 @@ img { display: block; max-width: 100%; }
 a { text-decoration: none; color: inherit; }
 button { cursor: pointer; font-family: var(--font-body); }
 ul { list-style: none; }
+
+/* === ACCESIBILIDAD === */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
 
 /* === TIPOGRAFÍA === */
 h1, h2, h3 { font-family: var(--font-heading); line-height: 1.25; }
@@ -115,7 +123,7 @@ h3 { font-size: 1.1rem; }
   position: sticky;
   top: 0;
   z-index: 200;
-  background: rgba(10, 0, 0, 0.9);
+  background: var(--bg-nav);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 215, 0, 0.15);
@@ -596,19 +604,22 @@ h3 { font-size: 1.1rem; }
    DISCLOSURE BANNER
    =========================== */
 #affiliate-banner {
-  display: none;
+  display: none; /* Revealed by JS: element.classList.add('is-visible') */
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 300;
-  background: rgba(10,0,0,0.95);
+  background: var(--bg-nav);
   border-top: 1px solid rgba(255,215,0,0.2);
   padding: 0.9rem 1.5rem;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
+}
+#affiliate-banner.is-visible {
+  display: flex;
 }
 #affiliate-banner p {
   font-size: 0.8rem;
@@ -696,4 +707,9 @@ h3 { font-size: 1.1rem; }
   .c-num { font-size: 1.6rem; }
   .quiz-btn { width: 100px; }
   .quiz-btn img { height: 58px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .flake { animation: none; display: none; }
 }
