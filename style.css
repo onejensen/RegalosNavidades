@@ -356,9 +356,8 @@ h3 { font-size: 1.1rem; }
   border-radius: var(--radius);
   overflow: hidden;
   cursor: pointer;
-  width: 120px;
+  width: 100%;
   transition: var(--transition);
-  flex-shrink: 0;
   display: block;
 }
 .quiz-btn:hover,
@@ -704,7 +703,6 @@ h3 { font-size: 1.1rem; }
   .product-img { height: 180px; }
   .countdown-units { gap: 1rem; }
   .c-num { font-size: 1.6rem; }
-  .quiz-btn { width: 100px; }
   .quiz-btn img { height: 58px; }
 }
 
