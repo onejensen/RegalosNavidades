@@ -445,6 +445,9 @@ h3 { font-size: 1.1rem; }
   align-items: start;
   padding: 2.5rem 0;
 }
+.product-sections-grid .products-grid {
+  grid-template-columns: 1fr;
+}
 .product-section { padding: 0; }
 .product-section h2 { margin-bottom: 0.5rem; }
 .product-section .section-desc {
