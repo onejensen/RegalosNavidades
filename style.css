@@ -444,6 +444,10 @@ h3 { font-size: 1.1rem; }
   overflow: hidden;
   transition: var(--transition);
 }
+.product-card:only-child {
+  grid-column: 1 / -1;
+  max-width: 560px;
+}
 .product-card:hover {
   border-color: var(--gold-border);
   transform: translateY(-3px);
