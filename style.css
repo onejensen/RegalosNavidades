@@ -453,6 +453,8 @@ h3 { font-size: 1.1rem; }
 }
 .product-sections-grid .products-grid {
   grid-template-columns: 1fr;
+  max-width: none;
+  margin: 0;
   align-self: start;
 }
 .product-section h2 { margin-bottom: 0.5rem; align-self: start; }
