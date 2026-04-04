@@ -447,6 +447,7 @@ h3 { font-size: 1.1rem; }
 .product-section {
   display: grid;
   grid-template-rows: subgrid;
+  grid-template-columns: minmax(0, 1fr);
   grid-row: span 3;
   padding: 0;
   row-gap: 0;
@@ -455,14 +456,12 @@ h3 { font-size: 1.1rem; }
   grid-template-columns: 1fr;
   max-width: none;
   margin: 0;
-  align-self: start;
 }
-.product-section h2 { margin-bottom: 0.5rem; align-self: start; }
+.product-section h2 { margin-bottom: 0.5rem; }
 .product-section .section-desc {
   color: var(--text-muted);
   font-size: 0.9rem;
   margin-bottom: 1.5rem;
-  align-self: start;
 }
 
 /* ===========================
